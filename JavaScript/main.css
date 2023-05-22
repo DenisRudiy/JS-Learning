@@ -1,0 +1,42 @@
+html {
+  scroll-behavior: smooth;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 1080px;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  background-color: antiquewhite;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.look {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.look .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 30%;
+  height: 400px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.look .content #reload {
+  width: 100px;
+  height: 50px;
+}/*# sourceMappingURL=main.css.map */
