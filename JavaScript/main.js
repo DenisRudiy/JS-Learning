@@ -157,7 +157,7 @@ console.log(jonas["first" + nameKey]);
 console.log(jonas["last" + nameKey]);
 
 const interestedIn = prompt(
-  "Wat do you want to know about Jonas? Choose between firstName, lastName, age, job or friends"
+  "What do you want to know about Jonas? Choose between firstName, lastName, age, job or friends"
 );
 if (jonas[interestedIn]) {
   console.log(jonas[interestedIn]);
@@ -238,3 +238,89 @@ console.log(
       : `${mark.name}'s BMI (${mark.bmi.toFixed(1)})`
   }!`
 );
+
+//                  For Loops
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2023 - 1991,
+  "Software Developer",
+  ["Michael", "Peter", "Steven"],
+];
+const types = [];
+
+for (i = 0; i < jonas.length; i++) {
+  console.log(jonas[i]);
+
+  types.push(typeof jonas[i]);
+}
+console.log(types);
+
+console.log("\n", "---- STRING ONLY ----");
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] !== "string") continue;
+
+  console.log(jonas[i], typeof jonas[i]);
+}
+
+console.log("\n", "---- BREAK WITH NUMBER ----");
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] === "number") break;
+
+  console.log(jonas[i], typeof jonas[i]);
+}
+
+//              Looping Backwards and Loops in Loops
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2023 - 1991,
+  "Software Developer",
+  ["Michael", "Peter", "Steven"],
+];
+
+for (let i = jonas.length - 1; i >= 0; i--) {
+  console.log(jonas[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(` ------- Starting exercise ${exercise}`);
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} ⛹️‍♂️`);
+  }
+}
+
+//                        While Loops
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+let count = 0;
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`, dice);
+  count++;
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6)
+    console.log("\n", `----- You are win with after ${count} attempts 🏆`);
+}
+
+//                        Codding Challenge
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+function calcTip(bills) {
+  total = 0;
+  for (let i = 0; i < bills.length; i++) {
+    total += bills[i];
+    if (50 < bills[i] < 300) {
+      total += bills[i] * 0.15;
+      console.log(bills[i] * 0.15);
+    } else {
+      total += bills[i] * 0.2;
+      console.log(bills[i] * 0.2);
+    }
+  }
+  return total;
+}
+console.log(calcTip(bills));
