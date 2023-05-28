@@ -42,6 +42,11 @@ main {
 .right {
   width: 52rem;
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 h1 {
@@ -110,8 +115,14 @@ h1 {
 .message {
   margin-bottom: 8rem;
   height: 3rem;
+  font-size: 18px;
 }
 
 .label-score {
   margin-bottom: 2rem;
+  font-size: 18px;
+}
+
+.label-highscore {
+  font-size: 18px;
 }/*# sourceMappingURL=style.css.map */
