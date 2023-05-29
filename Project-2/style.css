@@ -50,28 +50,11 @@ h1 {
 }
 
 p {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 /* -------------------------- */
 /* CLASSES TO MAKE MODAL WORK */
-.hidden {
-  display: none;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  background-color: white;
-  padding: 6rem;
-  border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: 10;
-}
-
 .overlay {
   position: absolute;
   top: 0;
@@ -82,4 +65,81 @@ p {
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   z-index: 5;
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-view {
+  opacity: 1;
+  animation: modal-show 0.5s;
+}
+
+.over-view {
+  opacity: 1;
+  animation: over-show 0.2s;
+}
+
+.modal-hide {
+  opacity: 0;
+  animation: modal-hide 0.5s;
+}
+
+.over-hide {
+  opacity: 0;
+  animation: over-hide 0.2s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes modal-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-hide {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+@keyframes over-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=style.css.map */
