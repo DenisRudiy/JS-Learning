@@ -95,7 +95,10 @@ const firstName = 'Jonas';
 const jonas = [firstName, 'Schmedtmann', 2023 - 1991, 'teacher', friends];
 console.log(jonas);
 
+//
 //            Array Operations (Methods)
+//
+
 const friends = ['Michael', 'Steven', 'Peter'];
 //Add elements
 const newLength = friends.push('Jay');
@@ -371,3 +374,172 @@ const calcTempAmplitudeBug = function (t1, t2) {
 const amplitudeBug = calcTempAmplitudeBug([3, 5, 1], [9, 4, 5]);
 
 console.log(amplitudeBug);
+
+//
+//
+//
+
+//                       SCOPES
+
+function calcAge(birthYear) {
+  const age = 2023 - birthYear;
+
+  function printAge() {
+    let output = `${firstName}, you are ${age}, born in ${birthYear}`;
+    console.log(output);
+
+    if (birthYear >= 1981 && birthYear <= 1996) {
+      const str = `Oh, and you're a millenial, ${firstName}`;
+      console.log(str);
+
+      output = '!NEW OUTPUT';
+    }
+    console.log(output);
+  }
+
+  printAge();
+
+  return age;
+}
+
+const firstName = 'Denis';
+calcAge(1991);
+
+//
+//
+//
+
+//                    HOISTING
+
+//
+//
+//
+
+console.log(me);
+// console.log(job);
+// console.log(year);
+
+var me = 'Denis';
+let job = 'student';
+const year = 2003;
+
+console.log(addDecl(2, 3));
+// console.log(addExpr(2, 3));
+// console.log(addArrow(2, 3));
+
+function addDecl(a, b) {
+  return a + b;
+}
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+const addArrow = (a, b) => a + b;
+
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log('All products deleted!');
+}
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+//
+//
+//
+
+//                      THIS KEYWORD
+
+//
+//
+//
+
+console.log(this);
+
+const calcAge = function (birthYear) {
+  console.log(2023 - birthYear);
+  console.log(this);
+};
+calcAge(1991);
+
+const calcAgeArrow = (birthYear) => {
+  console.log(2023 - birthYear);
+  console.log(this);
+};
+calcAgeArrow(1980);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log('\n', this);
+    console.log(this.year);
+  },
+};
+jonas.calcAge();
+
+//
+//
+//
+
+//
+//
+//
+
+//                     ALGORITHMS
+
+//
+//
+//
+
+//                  Binary algorithm
+
+const list = [1, 2, 3, 5, 7, 9];
+const item = 2;
+
+document.querySelector('#find').addEventListener('click', function () {
+  let low = 0;
+  let high = list.length - 1;
+  while (low <= high) {
+    let mid = Math.round((low + high) / 2);
+
+    let guess = list[mid];
+
+    if (guess == item) {
+      console.log(mid);
+      break;
+    }
+    if (guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+  return -1;
+});
+
+//                   Sorting by selection
+const list = [4, 1, 2, 6, 3, 7, 5];
+
+const smallestEl = function (l) {
+  let smallest = l[0];
+  for (let i = 1; i < l.length; i++) {
+    if (l[i] < smallest) {
+      smallest = l[i];
+    }
+  }
+  return smallest;
+};
+
+document.querySelector('#find').addEventListener('click', function () {
+  let newList = [];
+  while (list.length !== 0) {
+    let smallest = smallestEl(list);
+    const deleted = list.splice(list.indexOf(smallest), 1);
+    newList.push(deleted[0]);
+  }
+  console.log(newList);
+});

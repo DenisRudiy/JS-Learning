@@ -70,7 +70,7 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       diceEl.classList.add('hidden');
       document
@@ -85,7 +85,7 @@ btnHold.addEventListener('click', function () {
   }
 });
 btnNew.addEventListener('click', function () {
-  if (scores[0] > 10 || scores[1] > 10) {
+  if (scores[0] > 100 || scores[1] > 100) {
     init();
   }
 });
