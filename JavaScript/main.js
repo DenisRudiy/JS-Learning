@@ -495,49 +495,51 @@ jonas.calcAge();
 //
 //
 
+// init variables
+
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0,
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegeterian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0,
-      close: 24,
-    },
-  },
 
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  openingHours,
+
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    time = '22:00',
-    address,
-    mainIndex = 0,
-    starterIndex = 1,
-  }) {
+  orderDelivery({ time = '22:00', address, mainIndex = 0, starterIndex = 1 }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredient) {
+  orderPizza(mainIngredient, ...otherIngredient) {
     console.log(mainIngredient);
     console.log(otherIngredient);
   },
@@ -898,6 +900,171 @@ t1 > t2 && console.log('Team 2 is more likely to win');
 //
 //
 
+//                     Looping Arrays: The for-of Loop
+
+//
+//
+//
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+//
+//
+//
+
+//                     Optional Chaining (?.)
+
+//
+//
+//
+
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+//    WITH optional chaining
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+//    Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const item of days) {
+  const open = restaurant.openingHours[item]?.open ?? 'closed';
+  console.log(`On ${item}, we open at ${open}`);
+}
+
+//    Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+//    Arrays
+const users = [
+  {
+    name: 'Jonas',
+    email: 'hello@jonas.com',
+  },
+  {
+    name: '',
+  },
+];
+
+console.log(users[0]?.name ?? 'User array empty');
+console.log(users[1]?.name || 'User array empty');
+
+//
+//
+//
+
+//                     Looping Objects: Object Keys, Values and Entries
+
+//
+//
+//
+
+//    Property NAMES
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+//    Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+//    Entrie object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+//
+//
+//
+
+//                     Coding Challenge
+
+//
+//
+//
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+   1.
+for (const [i, player] of game.scored.entries()) {
+  console.log(`${i + 1}: ${player}`);
+}
+
+//    2.
+const odds = Object.values(game.odds);
+let Avg = 0;
+for (const item of odds) {
+  Avg += item;
+}
+console.log(Avg / odds.length);
+
+//    3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+//
+//
+//
+
 //                     ALGORITHMS
 
 //
@@ -952,3 +1119,33 @@ document.querySelector('#find').addEventListener('click', function () {
   }
   console.log(newList);
 });
+
+                 Recursion
+
+const box = ['item', 'item', 'item', 'item', 'key', 'item', 'item', 'item'];
+const lookForKey = function (box) {
+  for (let smallBox = 0; smallBox < box.length; smallBox++) {
+    if (box[smallBox] == 'key') {
+      return 'Found the key!';
+    } else {
+      console.log('This small box is not contain a key(');
+      continue;
+    }
+  }
+};
+console.log(lookForKey(box));
+
+let num = 23;
+
+const countdown = function (i) {
+  console.log(i);
+  if (i <= 0) {
+    return;
+  } else {
+    countdown(i - 1);
+  }
+};
+
+countdown(num);
+
+       ОСТАНОВИЛСЯ НА 65 СТРАНИЦЕ !!!
